@@ -1,26 +1,13 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import DashboardPlugin from './dashboard-plugin';
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import "./registerServiceWorker";
+//plugins
+import NowUIKit from './plugins/now-ui-kit';
 
-// Plugins
-import App from './App.vue';
-
-// router setup
-import routes from './routes/routes';
-
-// plugin setup
-Vue.use(VueRouter);
-Vue.use(DashboardPlugin);
-
-// configure router
-const router = new VueRouter({
-  routes, // short for routes: routes
-  linkActiveClass: 'active'
-});
-
-/* eslint-disable no-new */
+Vue.config.productionTip = false;
+Vue.use(NowUIKit);
 new Vue({
-  el: '#app',
-  render: h => h(App),
-  router
-});
+  router,
+  render: h => h(App)
+}).$mount("#app");

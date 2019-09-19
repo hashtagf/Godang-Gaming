@@ -25,21 +25,21 @@
   </table>
 </template>
 <script>
-export default {
-  name: 'n-table',
-  props: {
-    columns: Array,
-    data: Array
-  },
-  methods: {
-    hasValue(item, column) {
-      return item[column.toLowerCase()] !== 'undefined';
+  export default {
+    name: 'n-table',
+    props: {
+      columns: Array,
+      data: Array
     },
-    itemValue(item, column) {
-      return item[column.toLowerCase()];
+    methods: {
+      hasValue(item, column) {
+        return item[column.toLowerCase()] !== 'undefined'
+      },
+      itemValue(item, column) {
+        return item[column.toLowerCase()]
+      }
     }
   }
-};
 </script>
 <style>
 </style>

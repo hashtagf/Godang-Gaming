@@ -1,7 +1,7 @@
 <template>
   <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-animate" :class="switchClass">
     <div class="bootstrap-switch-container" @click="triggerToggle()">
-      <span class="bootstrap-switch-handle-on" :class="{[`bootstrap-switch-${color}`]: color}">
+      <span class="bootstrap-switch-handle-on ">
         <slot name="on">
             {{onText}}
         </slot>
@@ -16,35 +16,38 @@
   </div>
 </template>
 <script>
-export default {
-  name: 'n-switch',
-  props: {
-    value: [Array, Boolean],
-    onText: String,
-    offText: String,
-    color: String
-  },
-  computed: {
-    switchClass() {
-      let base = 'bootstrap-switch-';
-      let state = this.model ? 'on' : 'off';
-      return base + state;
+  export default {
+    name: 'n-switch',
+    props: {
+      value: [Array, Boolean],
+      onText: String,
+      offText: String
     },
-    model: {
-      get() {
-        return this.value;
+    computed: {
+      switchClass () {
+        let base = 'bootstrap-switch-'
+        let state = this.model ? 'on' : 'off'
+        let classes = base + state
+        return classes
       },
-      set(value) {
-        this.$emit('input', value);
+      model: {
+        get () {
+          return this.value
+        },
+        set (value) {
+          this.$emit('input', value)
+        }
+      }
+    },
+    methods: {
+      triggerToggle () {
+        this.model = !this.model
       }
     }
-  },
-  methods: {
-    triggerToggle() {
-      this.model = !this.model;
-    }
   }
-};
 </script>
-<style>
+<style lang="scss" scoped>
+  @import "~@/assets/sass/now-ui-kit/variables";
+  @import "~@/assets/sass/now-ui-kit/plugins/plugin-bootstrap-switch";
 </style>
+

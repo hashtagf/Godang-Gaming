@@ -10,7 +10,9 @@
         <slot name="title">
           {{title}}
         </slot>
-        <i class="now-ui-icons arrows-1_minimal-down"></i>
+        <slot name="icon">
+          <i v-if="!noIcon" class="now-ui-icons arrows-1_minimal-down"></i>
+        </slot>
       </a>
     </div>
     <collapse-transition :duration="animationDuration">
@@ -27,66 +29,66 @@
   </div>
 </template>
 <script>
-import { CollapseTransition } from 'vue2-transitions';
+  import {CollapseTransition} from 'vue2-transitions';
 
-export default {
-  name: 'collapse-item',
-  components: {
-    CollapseTransition
-  },
-  props: {
-    title: {
-      type: String,
-      default: ''
+  export default {
+    name: 'collapse-item',
+    components: {
+      CollapseTransition
     },
-    id: String
-  },
-  inject: {
-    animationDuration: {
-      default: 250
+    props: {
+      title: {
+        type: String,
+        default: ''
+      },
+      id: String,
+      noIcon: Boolean
     },
-    multipleActive: {
-      default: false
-    },
-    addItem: {
-      default: () => {}
-    },
-    removeItem: {
-      default: () => {}
-    },
-    deactivateAll: {
-      default: () => {}
-    }
-  },
-  computed: {
-    itemId() {
-      return this.id || this.title;
-    }
-  },
-  data() {
-    return {
-      active: false
-    };
-  },
-  methods: {
-    activate() {
-      let wasActive = this.active;
-      if (!this.multipleActive) {
-        this.deactivateAll();
+    inject: {
+      animationDuration: {
+        default: 250
+      },
+      multipleActive: {
+        default: false
+      },
+      addItem: {
+        default: () => {}
+      },
+      removeItem: {
+        default: () => {}
+      },
+      deactivateAll: {
+        default: () => {}
       }
-      this.active = !wasActive;
+    },
+    computed: {
+      itemId() {
+        return this.id || this.title
+      }
+    },
+    data() {
+      return {
+        active: false
+      }
+    },
+    methods: {
+      activate(){
+        if(!this.multipleActive){
+          this.deactivateAll();
+        }
+        this.active = !this.active;
+      }
+    },
+    mounted() {
+      this.addItem(this)
+    },
+    destroyed() {
+      if (this.$el && this.$el.parentNode) {
+        this.$el.parentNode.removeChild(this.$el)
+      }
+      this.removeItem(this)
     }
-  },
-  mounted() {
-    this.addItem(this);
-  },
-  destroyed() {
-    if (this.$el && this.$el.parentNode) {
-      this.$el.parentNode.removeChild(this.$el);
-    }
-    this.removeItem(this);
   }
-};
 </script>
 <style>
 </style>

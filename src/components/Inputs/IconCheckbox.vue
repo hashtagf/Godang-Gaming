@@ -18,27 +18,27 @@
   </div>
 </template>
 <script>
-export default {
-  name: 'icon-checkbox',
-  model: {
-    prop: 'checked'
-  },
-  props: {
-    checked: {
-      type: Boolean,
-      default: false
+  export default {
+    name: 'icon-checkbox',
+    model: {
+      prop: 'checked'
     },
-    name: String,
-    title: String,
-    icon: String,
-    disabled: Boolean
-  },
-  methods: {
-    updateValue() {
-      this.$emit('input', !this.checked);
+    props: {
+      checked: {
+        type: Boolean,
+        default: false
+      },
+      name: String,
+      title: String,
+      icon: String,
+      disabled: Boolean
+    },
+    methods: {
+      updateValue(){
+        this.$emit('input', !this.checked)
+      }
     }
   }
-};
 </script>
 <style>
 </style>

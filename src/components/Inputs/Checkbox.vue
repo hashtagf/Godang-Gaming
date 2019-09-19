@@ -15,45 +15,47 @@
   </div>
 </template>
 <script>
-export default {
-  name: 'n-checkbox',
-  model: {
-    prop: 'checked'
-  },
-  props: {
-    checked: [Array, Boolean],
-    disabled: Boolean,
-    inline: Boolean,
-    hasError: Boolean
-  },
-  data() {
-    return {
-      cbId: '',
-      touched: false
-    };
-  },
-  computed: {
+  export default {
+    name: 'n-checkbox',
     model: {
-      get() {
-        return this.checked;
-      },
-      set(check) {
-        if (!this.touched) {
-          this.touched = true;
-        }
-        this.$emit('input', check);
+      prop: 'checked'
+    },
+    props: {
+      checked: [Array, Boolean],
+      disabled: Boolean,
+      inline: Boolean,
+      hasError: Boolean
+    },
+    data() {
+      return {
+        cbId: '',
+        touched: false
       }
     },
-    inlineClass() {
-      if (this.inline) {
-        return `form-check-inline`;
+    computed: {
+      model: {
+        get() {
+          return this.checked
+        },
+        set(check) {
+          if (!this.touched) {
+            this.touched = true
+          }
+          this.$emit('input', check)
+        }
+      },
+      inlineClass() {
+        if (this.inline) {
+          return `form-check-inline`
+        }
       }
+    },
+    created() {
+      this.cbId = Math.random().toString(16).slice(2)
     }
-  },
-  created() {
-    this.cbId = Math.random()
-      .toString(16)
-      .slice(2);
   }
-};
 </script>
+<style lang="scss" scoped>
+  @import "~@/assets/sass/now-ui-kit/variables";
+  @import "~@/assets/sass/now-ui-kit/checkboxes-radio";
+</style>
