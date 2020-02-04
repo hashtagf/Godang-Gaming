@@ -12,10 +12,10 @@
                 </parallax>
             </div>
             <div class="rellax-text-container rellax-text">
-                <h1 class="h1-seo" data-rellax-speed="-2">Now UI Kit S</h1>
+                <h1 class="h1-seo" data-rellax-speed="-2">GODANK GAMING</h1>
                 <div class="pro">PRO</div>
             </div>
-            <h3 class="h3-description rellax-text" data-rellax-speed="-1">A beautiful premium Bootstrap 4 UI Kit.</h3>
+            <h3 class="h3-description rellax-text" data-rellax-speed="-1">รวบรวมเกมมิ่งครบวงจร </h3>
             <h6 class="category category-absolute rellax-text" data-rellax-speed="-2">
                 <parallax>
                     Designed by
